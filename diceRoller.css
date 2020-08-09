@@ -1,0 +1,63 @@
+html{
+    height:100%;
+    font-size:20px;
+}
+
+body{
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 500;
+    
+}
+
+label{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.grid{
+    display:flex;
+    flex-wrap: wrap;
+    width:22.5rem;
+    margin:20px auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid i{
+    color:red;
+    font-size: 7.5rem;
+    padding:0 0.06em;
+}
+
+#dice-num-display{
+    width:3rem;
+    padding-left:0.5rem;
+}
+
+.banner{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.head{
+    height:7rem;
+    position:relative;
+    margin:2rem;
+}
+
+@media (max-width: 540px) {
+
+    html{
+        font-size:20px;
+    }
+
+    .grid{
+        width:100%;
+    }
+
+    .grid i{
+        font-size:5.5rem;
+    }
+}
