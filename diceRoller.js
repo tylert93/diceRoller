@@ -1,21 +1,23 @@
 document.addEventListener("DOMContentLoaded", () =>{
 
-    var grid = document.querySelector(".grid");
-    var diceNumDisplay = document.querySelector("#dice-num-display");
-    var diceNum = diceNumDisplay.value;
-    var roll = document.querySelector(".roll");
-    var totalDisplay = document.querySelector("#total");
+    const grid = document.querySelector(".grid"),
+          diceNumDisplay = document.querySelector("#dice-num-display"),
+          roll = document.querySelector(".roll"),
+          totalDisplay = document.querySelector("#total");
+
+    let diceNum = diceNumDisplay.value;
+    
     //update the diceNum variable whenever the user enters a number value and hide any error messages
-    diceNumDisplay.addEventListener("input", function(){
+    diceNumDisplay.addEventListener("input", () => {
         diceNum = diceNumDisplay.value;
         $("[data-toggle='popover']").popover("hide");
     })
     //generate dice when user clicks 'roll' or presses enter
-    roll.addEventListener("click", function(){
+    roll.addEventListener("click", () => {
         rollDice();        
     })
 
-    document.addEventListener("keypress", function(event){
+    document.addEventListener("keypress", event => {
         if(event.keyCode === 13){
             rollDice();
         }
@@ -23,13 +25,9 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     function rollDice(){
        //check whether the number of dice entered is within limits
-       if(diceNum < 1){ 
-        $("[data-toggle='popover']").popover({title:"Too Low", content:"Please enter a number greater than 1"});
+       if(diceNum < 1 || diceNum > 9){ 
+        $("[data-toggle='popover']").popover({title:"Invalid Number", content:"Please enter a number between 1 and 9"});
         $("[data-toggle='popover']").popover("show");
-        return;
-       }else if(diceNum > 9){  
-        $("[data-toggle='popover']").popover({title:"Too High", content:"please enter a number less than 9"});
-        $("[data-toggle='popover']").popover("show");     
         return;
        }
        //clear necessary variables
@@ -45,24 +43,24 @@ document.addEventListener("DOMContentLoaded", () =>{
             total += num;
             //display dice images depending on the number generated
             if(num === 1){
-                diceCollection = "<i class=\"fas fa-dice-one\"></i>";
+                diceCollection = `<i class="fas fa-dice-one"></i>`;
             } else if(num === 2){
-                diceCollection = "<i class=\"fas fa-dice-two\"></i>";
+                diceCollection = `<i class="fas fa-dice-two"></i>`;
             } else if(num === 3){
-                diceCollection = "<i class=\"fas fa-dice-three\"></i>";
+                diceCollection = `<i class="fas fa-dice-three"></i>`;
             } else if(num === 4){
-                diceCollection = "<i class=\"fas fa-dice-four\"></i>";
+                diceCollection = `<i class="fas fa-dice-four"></i>`;
             } else if(num === 5){
-                diceCollection = "<i class=\"fas fa-dice-five\"></i>";
+                diceCollection = `<i class="fas fa-dice-five"></i>`;
             } else if(num === 6){
-                diceCollection = "<i class=\"fas fa-dice-six\"></i>";
+                diceCollection = `<i class="fas fa-dice-six"></i>`;
             }
     
             grid.innerHTML += diceCollection;
             
         }
         //display the total to the user
-        totalDisplay.innerHTML = "Total: " + total;
+        totalDisplay.innerHTML = `Total: ${total}`;
     }
 
 })
